@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* TestNativeModuleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TestNativeModuleTests.m */; };
+		0440A4342CD0FEE300765B02 /* RCTNativeLocalStorage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0440A4332CD0FEE300765B02 /* RCTNativeLocalStorage.mm */; };
 		0C80B921A6F3F58F76C31292 /* libPods-TestNativeModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-TestNativeModule.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -31,6 +32,8 @@
 		00E356EE1AD99517003FC87E /* TestNativeModuleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestNativeModuleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* TestNativeModuleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestNativeModuleTests.m; sourceTree = "<group>"; };
+		0440A4322CD0FEE300765B02 /* RCTNativeLocalStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTNativeLocalStorage.h; sourceTree = "<group>"; };
+		0440A4332CD0FEE300765B02 /* RCTNativeLocalStorage.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RCTNativeLocalStorage.mm; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* TestNativeModule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestNativeModule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = TestNativeModule/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = TestNativeModule/AppDelegate.mm; sourceTree = "<group>"; };
@@ -85,6 +88,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0440A4312CD0FE9000765B02 /* NativeLocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				0440A4322CD0FEE300765B02 /* RCTNativeLocalStorage.h */,
+				0440A4332CD0FEE300765B02 /* RCTNativeLocalStorage.mm */,
+			);
+			path = NativeLocalStorage;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* TestNativeModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +131,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0440A4312CD0FE9000765B02 /* NativeLocalStorage */,
 				13B07FAE1A68108700A75B9A /* TestNativeModule */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TestNativeModuleTests */,
@@ -398,6 +411,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				0440A4342CD0FEE300765B02 /* RCTNativeLocalStorage.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
