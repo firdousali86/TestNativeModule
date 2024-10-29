@@ -15,8 +15,10 @@ import {
   Text,
   useColorScheme,
   View,
+  Button,
+  TextInput,
 } from 'react-native';
-
+import NativeLocalStorage from './specs/NativeLocalStorage';
 import {
   Colors,
   DebugInstructions,
@@ -24,6 +26,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+const EMPTY = '<empty>';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -56,42 +60,47 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 }
 
 function App(): React.JSX.Element {
+  const [value, setValue] = React.useState<string | null>(null);
+  const [editingValue, setEditingValue] = React.useState<string | null>(null);
   const isDarkMode = useColorScheme() === 'dark';
+
+  React.useEffect(() => {
+    const storedValue = NativeLocalStorage?.getItem('myKey');
+    setValue(storedValue ?? '');
+  }, []);
+
+  function saveValue() {
+    NativeLocalStorage?.setItem(editingValue ?? EMPTY, 'myKey');
+    setValue(editingValue);
+  }
+
+  function clearAll() {
+    NativeLocalStorage?.clear();
+    setValue('');
+  }
+
+  function deleteValue() {
+    NativeLocalStorage?.removeItem(editingValue ?? EMPTY);
+    setValue('');
+  }
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <SafeAreaView style={{flex: 1}}>
+      <Text style={styles.text}>
+        Current stored value is: {value ?? 'No Value'}
+      </Text>
+      <TextInput
+        placeholder="Enter the text you want to store"
+        style={styles.textInput}
+        onChangeText={setEditingValue}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+      <Button title="Save" onPress={saveValue} />
+      <Button title="Delete" onPress={deleteValue} />
+      <Button title="Clear" onPress={clearAll} />
     </SafeAreaView>
   );
 }
@@ -112,6 +121,19 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  text: {
+    margin: 10,
+    fontSize: 20,
+  },
+  textInput: {
+    margin: 10,
+    height: 40,
+    borderColor: 'black',
+    borderWidth: 1,
+    paddingLeft: 5,
+    paddingRight: 5,
+    borderRadius: 5,
   },
 });
 
